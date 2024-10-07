@@ -1,4 +1,5 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+﻿@using System.Security.Claims
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +39,8 @@
 
                             if (jwtToken != null)
                             {
-                                var usernameClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-                                var roleClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "role")?.Value;
+                                var usernameClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+                                var roleClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
                                 <p>Logged in as: @usernameClaim</p>
                                 <p>Role: @roleClaim</p>
